@@ -1,6 +1,7 @@
-import { join } from 'path';
+import {join} from 'path';
 
-import { SeedConfig } from './seed.config';
+import {SeedConfig} from './seed.config';
+import {ExtendPackages} from "./seed.config.interfaces";
 // import { ExtendPackages } from './seed.config.interfaces';
 
 /**
@@ -8,12 +9,12 @@ import { SeedConfig } from './seed.config';
  * below.
  */
 export class ProjectConfig extends SeedConfig {
-
   PROJECT_TASKS_DIR = join(process.cwd(), this.TOOLS_DIR, 'tasks', 'project');
 
   constructor() {
     super();
-    // this.APP_TITLE = 'Put name of your app here';
+    this.APP_TITLE = 'BencinMonitor';
+    this.ENABLE_SCSS = true;
 
     /* Enable typeless compiler runs (faster) between typed compiler runs. */
     // this.TYPED_COMPILE_INTERVAL = 5;
@@ -33,13 +34,31 @@ export class ProjectConfig extends SeedConfig {
     ];
 
     // Add packages (e.g. ng2-translate)
-    // let additionalPackages: ExtendPackages[] = [{
-    //   name: 'ng2-translate',
-    //   // Path to the package's bundle
-    //   path: 'node_modules/ng2-translate/bundles/ng2-translate.umd.js'
-    // }];
+
+    let additionalPackages: ExtendPackages[] = [{
+      //   name: 'ng2-translate',
+      //   // Path to the package's bundle
+      //   path: 'node_modules/ng2-translate/bundles/ng2-translate.umd.js'
+      name: 'lodash',
+      path: `${this.APP_BASE}node_modules/lodash/lodash.js`,
+      packageMeta: {
+        main: 'index.js',
+        defaultExtension: 'js'
+      }
+    },
+      {
+        name: 'immutable',
+        path: `${this.APP_BASE}node_modules/immutable/dist/immutable.js`,
+        packageMeta: {
+          main: 'index.js',
+          defaultExtension: 'js'
+        }
+      }
+
+    ];
+
     //
-    // this.addPackagesBundles(additionalPackages);
+    this.addPackagesBundles(additionalPackages);
 
     /* Add to or override NPM module configurations: */
     // this.mergeObject(this.PLUGIN_CONFIGS['browser-sync'], { ghostMode: false });

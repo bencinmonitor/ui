@@ -22,9 +22,11 @@
     ],
     "types": [
       "node"
+      // ,"lodash"
     ]
   },
   "exclude": [
+    "desktop",
     "node_modules",
     "dist",
     "src"

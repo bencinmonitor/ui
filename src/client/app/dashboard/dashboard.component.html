@@ -1,0 +1,16 @@
+<div class="columns">
+  <div class="column is-one-quarter">
+    <div *ngFor="let station of stations; let i = index">
+      <a (click)="openStation($event, station.key)">{{ station.name }}</a>
+    </div>
+
+  </div><!-- /.column -->
+
+
+  <div class="column">
+    <pre>{{ currentStation | json }}</pre>
+  </div>
+</div>
+
+
+
